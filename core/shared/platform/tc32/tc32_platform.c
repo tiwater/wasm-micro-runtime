@@ -31,40 +31,10 @@ os_free(void *ptr)
     // Do nothing.
 }
 
-/* Patch for string related functions */
-extern int
-u_sprintf(char *s, const char *fmt, ...);
-
-int
-vsnprintf(char *str, size_t size, const char *format, va_list ap)
+#if BH_DEBUG != 0
+void
+abort()
 {
-    return u_sprintf(str, size, format, ap);
+  // Do nothing.
 }
-
-int
-snprintf(char *str, size_t size, const char *format, ...)
-{
-    int n = 0;
-    va_list args;
-    va_start(args, format);
-    n = vsnprintf(str, size, format, args);
-    va_end(args);
-    return n;
-}
-
-int
-puts(const char *str)
-{
-    unsigned int len = 0;
-    while (*str++) {
-        putchar(*str);
-        len++;
-    }
-    return len;
-}
-
-int
-vprintf(const char *format, va_list arg)
-{
-    return puts(format);
-}
+#endif

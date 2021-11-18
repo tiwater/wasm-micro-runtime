@@ -1,12 +1,13 @@
 /*
   Please refer to: https://gcc.gnu.org/onlinedocs/gccint/Soft-float-library-routines.html
  */
+#include "platform_internal.h"
 typedef int word_type;
 
-typedef long long INT64;
-typedef unsigned long long UINT64;
-typedef int INT32;
-typedef unsigned int UINT32;
+typedef int64_t INT64;
+typedef uint64_t UINT64;
+typedef int32_t INT32;
+typedef uint32_t UINT32;
 
 /*
 SI is "single integer" -- 32 bits
@@ -16,7 +17,7 @@ l is logical -- unsigned
 a is arithmetic -- signed
 */
 
- INT64 __ashldi3 ( INT64 x, word_type c) { return x << c; }
+//  INT64 __ashldi3 ( INT64 x, word_type c) { return x << c; }
  INT64 __ashrdi3 ( INT64 x, word_type c) { return x >> c; }
 UINT64 __lshrdi3 (UINT64 x, word_type c) { return x >> c; }
 
@@ -27,7 +28,7 @@ UINT64 __udivdi3 (UINT64 x, UINT64 y) { return x / y; }
 UINT64 __umoddi3 (UINT64 x, UINT64 y) { return x % y; }
 
 /* signed and unsigned multiplication and negation are the same */
-INT64 __muldi3 (INT64 x, INT64 y) { return x * y; }
+// INT64 __muldi3 (INT64 x, INT64 y) { return x * y; }
 INT64 __negdi2 (INT64 x) { return -x; }
 
 UINT64 __udivmoddi4 (UINT64 x, UINT64 y, UINT64 *r) { *r = x % y; return x / y; }
